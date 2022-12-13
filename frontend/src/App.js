@@ -11,16 +11,19 @@ const App = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     console.log(word);
-    fetch(`https://api.unsplash.com/photos/random/?query=${word}&client_id=${UNSPLASH_KEY}`)
-      .then((res) => res.json())
+    setWord('');
+    fetch(
+      `https://api.unsplash.com/photos/random/?query=${word}&client_id=${UNSPLASH_KEY}`
+    ) ///we have used fetch function that returns Promise. And Promise could be either resolved or rejected
+      .then((res) => res.json()) /// and thats what we have actually do when Promise is resolved ...
       .then((data) => {
-        console.log(data);
+        console.log(data); /// ... and we get actual data
       })
       .cath((err) => {
-        console.log(err);
+        console.log(err); //// If the Promise is rejected we could print err to the console log and do some other actions afterwards
       });
-  };
-
+    };
+    
   return (
     <div>
       <Header title="Images Gallery" />
