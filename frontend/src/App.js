@@ -1,12 +1,12 @@
-import { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Header from "./components/Header";
-import Search from "./components/Search";
+import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/Header';
+import Search from './components/Search';
 
 const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
 
 const App = () => {
-  const [word, setWord] = useState("");
+  const [word, setWord] = useState('');
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -15,15 +15,15 @@ const App = () => {
     fetch(
       `https://api.unsplash.com/photos/random/?query=${word}&client_id=${UNSPLASH_KEY}`
     ) ///we have used fetch function that returns Promise. And Promise could be either resolved or rejected
-      .then((res) => res.json())  ///response /// and thats what we have actually do when Promise is resolved ...
+      .then((res) => res.json()) ///response /// and thats what we have actually do when Promise is resolved ...
       .then((data) => {
         console.log(data); /// ... and we get actual data
       })
       .catch((err) => {
         console.log(err); ///error /// If the Promise is rejected we could print err to the console log and do some other actions afterwards
       });
-    };
-    
+  };
+
   return (
     <div>
       <Header title="Images Gallery" />

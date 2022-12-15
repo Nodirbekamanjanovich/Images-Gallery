@@ -1,27 +1,27 @@
-import React from "react";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import React from 'react';
+import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 
-const Search = ({word, setWord, handleSubmit}) => {
+const Search = ({ word, setWord, handleSubmit }) => {
   return (
     <Container>
-      <Row className='justify-content-center'>
-        <Col className='mt-4' xs='12' md='8' lg='6'>
+      <Row className="justify-content-center">
+        <Col className="mt-4" xs="12" md="8" lg="6">
           <Form onSubmit={handleSubmit}>
-          <Form.Row>
-            <Col xs='9'>
-              <Form.Control 
-              type='text'
-              value={word}
-              onChange={(e) => setWord(e.target.value)}
-              placeholder="Search for a new image..." 
-              />
-            </Col>
-            <Col>
-              <Button variant="primary" type="submit">
-                Search
-              </Button>
-            </Col>
-          </Form.Row>
+            <Form.Row>
+              <Col xs="9">
+                <Form.Control
+                  type="text"
+                  value={word}
+                  onChange={(e) => setWord(e.target.value)}
+                  placeholder="Search for a new image..."
+                />
+              </Col>
+              <Col>
+                <Button variant="primary" type="submit">
+                  Search
+                </Button>
+              </Col>
+            </Form.Row>
           </Form>
         </Col>
       </Row>
