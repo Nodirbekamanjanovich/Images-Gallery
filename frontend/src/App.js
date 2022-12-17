@@ -7,6 +7,9 @@ const UNSPLASH_KEY = process.env.REACT_APP_UNSPLASH_KEY;
 
 const App = () => {
   const [word, setWord] = useState('');
+  const [images, setImages] = useState([]);
+
+  console.log(images); /// ... and we get actual data
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -17,7 +20,7 @@ const App = () => {
     ) ///we have used fetch function that returns Promise. And Promise could be either resolved or rejected
       .then((res) => res.json()) ///response /// and thats what we have actually do when Promise is resolved ...
       .then((data) => {
-        console.log(data); /// ... and we get actual data
+        setImages([data, ...images]);
       })
       .catch((err) => {
         console.log(err); ///error /// If the Promise is rejected we could print err to the console log and do some other actions afterwards
