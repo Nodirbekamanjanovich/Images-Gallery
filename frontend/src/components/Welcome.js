@@ -6,7 +6,7 @@ const Welcome = () => (
     <h1>Images Gallery</h1>
     <p>
       This is a simple application that retrieves photos using Unsplash API. In
-      order to start enter any search term in the input field.
+      order to start enter any search term in the input.
     </p>
     <p>
       <Button variant="primary" href="http://unsplash.com" target="_blank">
@@ -16,4 +16,4 @@ const Welcome = () => (
   </Jumbotron>
 );
 
-export default Welcome;
+export default 
