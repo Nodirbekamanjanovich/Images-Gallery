@@ -11,6 +11,7 @@
     },
     "python.linting.pycodestyleEnabled": true,
     "python.linting.pycodestyleArgs": ["--max-line-length=88"],
+    "python.linting.pylintArgs": ["--errors-only"],
     "python.linting.pylintEnabled": true,
     "python.formatting.provider": "black",
     "[python]": {
