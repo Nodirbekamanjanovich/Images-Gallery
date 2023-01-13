@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from './components/Header';
 import Search from './components/Search';
@@ -12,19 +13,17 @@ const App = () => {
   const [word, setWord] = useState('');
   const [images, setImages] = useState([]);
 
-  const handleSearchSubmit = (e) => {
+  const handleSearchSubmit = async (e) => {
     e.preventDefault();
-    ///console.log(word);
+
+    try {
+      const res = await axios.get(`${API_URL}/new-image?query=${word}`);
+      setImages([{ ...res.data, title: word }, ...images]);
+    } catch (error) {
+      console.log(error);
+    }
+
     setWord('');
-    fetch(`${API_URL}/new-image?query=${word}`) ///we have used fetch function that returns Promise. And Promise could be either resolved or rejected
-      .then((res) => res.json()) ///response /// and thats what we have actually do when Promise is resolved ...
-      .then((data) => {
-        ///console.log(data) /// ... and we get actual data
-        setImages([{ ...data, title: word }, ...images]);
-      })
-      .catch((err) => {
-        console.log(err); ///error /// If the Promise is rejected we could print err to the console log and do some other actions afterwards
-      });
   };
 
   const handleDeleteImage = (id) => {
