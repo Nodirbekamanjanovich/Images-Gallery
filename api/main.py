@@ -16,6 +16,7 @@ UNSPLASH_URL = "https://api.unsplash.com/photos/random"
 UNSPLASH_KEY = os.environ.get("UNSPLASH_KEY", "")
 DEBUG = bool(os.environ.get("DEBUG", True))
 
+
 if not UNSPLASH_KEY:
     raise EnvironmentError(
         "Please create .env.local file and insert there UNSPLASH_KEY"
@@ -51,6 +52,17 @@ def images():
         result = images_collection.insert_one(image)
         inserted_id = result.inserted_id
         return {"inserted_id": inserted_id}
+
+
+@app.route("/images/<image_id>", methods=["DELETE"])
+def image(image_id):
+    if request.method == "DELETE":
+        result = images_collection.delete_one({"_id": image_id})
+        if not result:
+            return {"error": "Image wasn't deleted. Please try again"}, 500
+        if result and not result.deleted_count:
+            return {"error": "Image not found"}, 404
+        return {"deleted_id": image_id}
 
 
 if __name__ == "__main__":
